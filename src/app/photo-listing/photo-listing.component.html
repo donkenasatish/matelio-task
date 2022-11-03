@@ -1,0 +1,41 @@
+<div class="main-block mt-4">
+    <div class="row">
+        <div class="col-md-3" *ngFor="let photo of listOfPhotos; let i = index">
+            <div class="card">
+                <img [src]="photo.url" class="card-img-top" [alt]="photo.title">
+                <div class="card-body">
+                    <h5 class="card-title">{{photo.title}}</h5>
+                    <p class="card-text">{{photo.url}}</p>
+                    <p class="card-text">{{photo.id}}</p>
+                    <a class="btn btn-primary" *ngIf="!photo.isCompared" (click)="addToTable(photo)">Compare</a>
+                    <a class="btn btn-danger" *ngIf="photo.isCompared" (click)="removeFromTable(i)">Remove</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-block">
+        <h2 class="d-flex justify-content-center align-items-center mb-3">Comparision Table</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>URL</th>
+                    <th>Thumbnail</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let record of comparisionTable">
+                    <td>{{record.title}}</td>
+                    <td>{{record.id}}</td>
+                    <td>{{record.url}}</td>
+                    <td>{{record.thumbnailUrl}}</td>
+                    <td>
+                        <img [src]="record.url" alt="" class="table-image">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
